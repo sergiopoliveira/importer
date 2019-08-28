@@ -1,12 +1,9 @@
-# Aggregator service
+# Importer service
 
-[![CircleCI](https://circleci.com/gh/sergiopoliveira/aggregator.svg?style=svg)](https://circleci.com/gh/sergiopoliveira/aggregator)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c05d2ac0b22047a9b5c03408a8ec8f9d)](https://www.codacy.com/app/sergiopoliveira/aggregator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=sergiopoliveira/aggregator&amp;utm_campaign=Badge_Grade)
-[![codecov](https://codecov.io/gh/sergiopoliveira/aggregator/branch/master/graph/badge.svg)](https://codecov.io/gh/sergiopoliveira/aggregator)
 
-Aggregator service will to listen to a Message Queue, parse the JSON messages to Products and and saves them to the database. Also tracks if the Product is newly added or updated.
+Importer service on startup will check for dataExample.csv and start parsing it to JSON, sending each row at a time to a message queue (ActiveMQ).
 
-To be used together with the Importer service.
+To be used together with the Aggregator service.
 
 ## Getting Started
 
@@ -14,7 +11,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-JDK 8 and Maven or Docker is required to run this project.
+JDK 11 and Maven or Docker is required to run this project.
 
 ### Build and Run
 
@@ -52,13 +49,6 @@ services:
       - "5051:5051"
      depends_on:
       - activemq
-```
-
-## REST Endpoints
-
-```
-http://localhost:5051/api/v1/products -> List all products in the database
-http://localhost:5051/api/v1/statistics/daily -> Get daily statistics for Products inserted or updated
 ```
 
 ## Running the tests
