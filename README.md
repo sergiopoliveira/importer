@@ -1,6 +1,5 @@
 # Importer service
-
-[![CircleCI](https://circleci.com/gh/sergiopoliveira/importer.svg?style=svg)](https://circleci.com/gh/sergiopoliveira/importer)
+[![Github Actions](https://github.com/sergiopoliveira/importer/workflows/master/badge.svg)](https://github.com/sergiopoliveira/importer/actions)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/5b035dd9a35c469185fb27fe798fc365)](https://www.codacy.com/app/sergiopoliveira/importer?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=sergiopoliveira/importer&amp;utm_campaign=Badge_Grade)
 [![codecov](https://codecov.io/gh/sergiopoliveira/importer/branch/master/graph/badge.svg)](https://codecov.io/gh/sergiopoliveira/importer)
 
