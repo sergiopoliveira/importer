@@ -52,6 +52,10 @@ services:
       - "5051:5051"
      depends_on:
       - activemq
+  zipkin:
+     image: openzipkin/zipkin
+     ports:
+      - "9411:9411"
 ```
 
 ## Running the tests
