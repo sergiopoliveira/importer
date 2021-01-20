@@ -16,7 +16,7 @@ services:
   filebeat:
     image: docker.elastic.co/beats/filebeat:7.7.0
     volumes:
-      - ./filebeat/filebeat.docker.yml:/usr/share/filebeat/filebeat.yml:ro # Configuration file
+    #  - ./filebeat/filebeat.docker.yml:/usr/share/filebeat/filebeat.yml:ro # Configuration file
       - /var/lib/docker/containers:/var/lib/docker/containers:ro # Docker logs
       - /var/run/docker.sock:/var/run/docker.sock:ro # Additional information about containers
     user: root
@@ -33,6 +33,7 @@ services:
       - "5050:5050"
     depends_on:
       - activemq
+      - kibana
     labels:
       collect_logs_with_filebeat: "true"
       decode_log_events_to_json_object: "true"
@@ -42,12 +43,7 @@ services:
       - "5051:5051"
      depends_on:
       - activemq
-  zipkin:
-     image: openzipkin/zipkin
-     ports:
-      - "9411:9411"
-     depends_on:
-      - activemq
+      - kibana
      labels:
-      collect_logs_with_filebeat: "true"
-      decode_log_events_to_json_object: "true"
+       collect_logs_with_filebeat: "true"
+       decode_log_events_to_json_object: "true"
