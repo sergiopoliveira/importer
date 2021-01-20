@@ -12,7 +12,15 @@ services:
       - "5601:5601"
     restart: on-failure
     depends_on:
-      - elasticsearch    
+      - elasticsearch
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:7.7.0
+    volumes:
+      - ./filebeat/filebeat.docker.yml:/usr/share/filebeat/filebeat.yml:ro # Configuration file
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro # Docker logs
+      - /var/run/docker.sock:/var/run/docker.sock:ro # Additional information about containers
+    user: root
+    restart: on-failure
   activemq:
     container_name: activemq
     image: vromero/activemq-artemis
@@ -25,6 +33,9 @@ services:
       - "5050:5050"
     depends_on:
       - activemq
+    labels:
+      collect_logs_with_filebeat: "true"
+      decode_log_events_to_json_object: "true"
   aggregator:
      image: sergiopoliveira/aggregator
      ports:
@@ -37,3 +48,6 @@ services:
       - "9411:9411"
      depends_on:
       - activemq
+     labels:
+      collect_logs_with_filebeat: "true"
+      decode_log_events_to_json_object: "true"
